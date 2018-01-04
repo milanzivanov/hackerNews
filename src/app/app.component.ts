@@ -1,10 +1,18 @@
 import { Component } from '@angular/core';
+import { HackerNewsService } from './app.service';
 
 @Component({
-  selector: 'app-root',
+  // tslint:disable-next-line:component-selector
+  selector: 'hacker-component',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+
+  news = {};
+
+  constructor(private hns: HackerNewsService) {
+    this.hns.getNews().subscribe(data => this.news = data);
+  }
+
 }
